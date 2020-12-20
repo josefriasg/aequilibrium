@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,6 +21,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 
 import com.aequilibrium.transformers.dao.ITransformersDAO;
+import com.aequilibrium.transformers.model.BattleResponse;
 import com.aequilibrium.transformers.model.Transformer;
 import com.aequilibrium.transformers.model.enums.TransformerType;
 import com.aequilibrium.transformers.service.impl.TransformerServiceImpl;
@@ -165,21 +167,72 @@ public class TransformerServiceImplTest {
 	
 	@Test
 	public void battle_ValidList_True() {
-		//TODO implement
+		Transformer soundwave = new Transformer(0, "Soundwave", TransformerType.D, 8,9,2,6,7,5,6,10);
+		Transformer bluestreak = new Transformer(1, "Bluestreak", TransformerType.A, 6,6,7,9,5,2,9,7);
+		Transformer hubcap = new Transformer(2, "Hubcap", TransformerType.A, 4,4,4,4,4,4,4,4);
+		
+    	List<Transformer> list = new ArrayList<Transformer>();
+    	list.add(soundwave);
+    	list.add(bluestreak);
+    	list.add(hubcap);
+    	
+    	List<Integer> inputParamsList = new ArrayList<Integer>();
+    	inputParamsList.add(0);
+    	inputParamsList.add(1);
+    	inputParamsList.add(2);
+    	
+    	when(transformerDAO.findAllById(Mockito.anyIterable())).thenReturn(list);
+    	
+    	BattleResponse response = transformerService.battle(inputParamsList);
+    	
+    	assertThat(response).isNotNull();
+    	assertThat(response.getNumBattles()).isEqualTo(1);
+    	assertThat(response.getWinningTeam()).isEqualTo("Decepticons");
+    	assertThat(response.getSurvivers()).isNotNull();
+    	assertThat(response.getSurvivers().size()).isEqualTo(1);
+    	assertThat(response.getSurvivers().get(0).getName()).isEqualTo("Hubcap");
 	}
 	
 	@Test
-	public void battle_EmptyList_False() {
-		//TODO implement
+	public void battle_EmptyParameterList_False() {
+    	List<Integer> inputParamsList = new ArrayList<Integer>();
+    	
+    	BattleResponse response = transformerService.battle(inputParamsList);
+    	
+    	assertThat(response).isNull();
 	}
 	
 	@Test
 	public void battle_NullParameter_False() {
-		//TODO implement
+    	BattleResponse response = transformerService.battle(null);
+    	
+    	assertThat(response).isNull();
 	}
 	
 	@Test
 	public void battle_ListAllAutobots_True() {
-		//TODO implement
+		Transformer bumblebee = new Transformer(0, "Bumblebee", TransformerType.A, 8,9,2,6,7,5,6,10);
+		Transformer bluestreak = new Transformer(1, "Bluestreak", TransformerType.A, 6,6,7,9,5,2,9,7);
+		Transformer hubcap = new Transformer(2, "Hubcap", TransformerType.A, 4,4,4,4,4,4,4,4);
+		
+    	List<Transformer> list = new ArrayList<Transformer>();
+    	list.add(bumblebee);
+    	list.add(bluestreak);
+    	list.add(hubcap);
+    	
+    	List<Integer> inputParamsList = new ArrayList<Integer>();
+    	inputParamsList.add(0);
+    	inputParamsList.add(1);
+    	inputParamsList.add(2);
+    	
+    	when(transformerDAO.findAllById(Mockito.anyIterable())).thenReturn(list);
+    	
+    	BattleResponse response = transformerService.battle(inputParamsList);
+    	
+    	assertThat(response).isNotNull();
+    	assertThat(response.getNumBattles()).isEqualTo(0);
+    	assertThat(response.getWinningTeam()).isEqualTo("Autobots");
+    	assertThat(response.getSurvivers()).isNotNull();
+    	assertThat(response.getSurvivers().size()).isEqualTo(3);
 	}
 }
