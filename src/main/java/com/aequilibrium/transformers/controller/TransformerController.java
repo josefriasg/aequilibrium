@@ -95,9 +95,13 @@ public class TransformerController {
 	}
 	
 	@RequestMapping(value = "/battle")
-	public BattleResponseDto battle(@RequestBody List<Integer> transformerIDs) {
+	public ResponseEntity battle(@RequestBody List<Integer> transformerIDs) {
 		log.info("Transformer battle!");
-		return modelMapper.map(transformerService.battle(transformerIDs), BattleResponseDto.class);
+		if (transformerIDs == null || transformerIDs.isEmpty()) {
+			log.error("Invalid parameters for battle");
+            return ResponseEntity.badRequest().build();
+		}
+		return ResponseEntity.ok(modelMapper.map(transformerService.battle(transformerIDs), BattleResponseDto.class));
 		
 	}
 
