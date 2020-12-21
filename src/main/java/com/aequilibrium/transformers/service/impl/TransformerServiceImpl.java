@@ -175,6 +175,7 @@ public class TransformerServiceImpl implements ITransformerService {
 			}else {
 				log.info("No winner in the battle");
 				response.setWinningTeam(ITransformerService.WINNING_TEAM_NONE);
+				response.setSurvivors(new ArrayList<Transformer>());
 			}
 			
 			return response;
