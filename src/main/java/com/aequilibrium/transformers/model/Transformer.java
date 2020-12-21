@@ -2,6 +2,7 @@ package com.aequilibrium.transformers.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Transformer implements Comparable<Transformer>{
 	@Column
 	private String name;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column
 	private TransformerType type;
 	
