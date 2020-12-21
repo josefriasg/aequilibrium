@@ -217,8 +217,8 @@ public class TransformerServiceImplTest {
     	assertThat(response).isNotNull();
     	assertThat(response.getNumBattles()).isEqualTo(1);
     	assertThat(response.getWinningTeam()).isEqualTo(ITransformerService.WINNING_TEAM_AUTOBOTS);
-    	assertThat(response.getSurvivers()).isNotNull();
-    	assertThat(response.getSurvivers().size()).isEqualTo(0);
+    	assertThat(response.getSurvivors()).isNotNull();
+    	assertThat(response.getSurvivors().size()).isEqualTo(0);
 	}
 	
 	@Test
@@ -242,8 +242,8 @@ public class TransformerServiceImplTest {
     	assertThat(response).isNotNull();
     	assertThat(response.getNumBattles()).isEqualTo(1);
     	assertThat(response.getWinningTeam()).isEqualTo(ITransformerService.WINNING_TEAM_DECEPTICONS);
-    	assertThat(response.getSurvivers()).isNotNull();
-    	assertThat(response.getSurvivers().size()).isEqualTo(0);
+    	assertThat(response.getSurvivors()).isNotNull();
+    	assertThat(response.getSurvivors().size()).isEqualTo(0);
 	}
 	
 	@Test
@@ -270,8 +270,8 @@ public class TransformerServiceImplTest {
     	assertThat(response).isNotNull();
     	assertThat(response.getNumBattles()).isEqualTo(0);
     	assertThat(response.getWinningTeam()).isEqualTo(ITransformerService.WINNING_TEAM_NONE);
-    	assertThat(response.getSurvivers()).isNotNull();
-    	assertThat(response.getSurvivers().size()).isEqualTo(0);
+    	assertThat(response.getSurvivors()).isNotNull();
+    	assertThat(response.getSurvivors().size()).isEqualTo(0);
 	}
 	
 	@Test
@@ -469,9 +469,9 @@ public class TransformerServiceImplTest {
     	assertThat(response).isNotNull();
     	assertThat(response.getNumBattles()).isEqualTo(1);
     	assertThat(response.getWinningTeam()).isEqualTo(ITransformerService.WINNING_TEAM_DECEPTICONS);
-    	assertThat(response.getSurvivers()).isNotNull();
-    	assertThat(response.getSurvivers().size()).isEqualTo(1);
-    	assertThat(response.getSurvivers().get(0).getName()).isEqualTo("Hubcap");
+    	assertThat(response.getSurvivors()).isNotNull();
+    	assertThat(response.getSurvivors().size()).isEqualTo(1);
+    	assertThat(response.getSurvivors().get(0).getName()).isEqualTo("Hubcap");
 	}
 	
 	@Test
@@ -507,7 +507,7 @@ public class TransformerServiceImplTest {
     	assertThat(response).isNotNull();
     	assertThat(response.getNumBattles()).isEqualTo(3);
     	assertThat(response.getWinningTeam()).isEqualTo(ITransformerService.WINNING_TEAM_AUTOBOTS);
-    	assertThat(response.getSurvivers()).isNotNull();
-    	assertThat(response.getSurvivers().size()).isEqualTo(1);
+    	assertThat(response.getSurvivors()).isNotNull();
+    	assertThat(response.getSurvivors().size()).isEqualTo(1);
 	}
 }

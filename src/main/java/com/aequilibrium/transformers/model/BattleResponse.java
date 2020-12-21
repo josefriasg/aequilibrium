@@ -14,5 +14,5 @@ public class BattleResponse {
 	
 	private String winningTeam;
 	
-	private List<Transformer> survivers;
+	private List<Transformer> survivors;
 }
