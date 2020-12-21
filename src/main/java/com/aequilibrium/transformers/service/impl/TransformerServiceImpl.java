@@ -121,7 +121,7 @@ public class TransformerServiceImpl implements ITransformerService {
 			if (isOptimus && isPredaking) {
 				log.info("Optimus and Predaking in battle, fight is over");
 				response.setNumBattles(0);
-				response.setSurvivers(new ArrayList<Transformer>());
+				response.setSurvivors(new ArrayList<Transformer>());
 				response.setWinningTeam(ITransformerService.WINNING_TEAM_NONE);
 				return response;
 			}
@@ -169,11 +169,11 @@ public class TransformerServiceImpl implements ITransformerService {
 			if (winsForAutobots > winsForDecepticons) {
 				log.info("Autobots won the battle");
 				response.setWinningTeam(ITransformerService.WINNING_TEAM_AUTOBOTS);
-				response.setSurvivers(decepticonsToBattle);
+				response.setSurvivors(decepticonsToBattle);
 			}else if (winsForAutobots < winsForDecepticons) {
 				log.info("Decepticons won the battle");
 				response.setWinningTeam(ITransformerService.WINNING_TEAM_DECEPTICONS);
-				response.setSurvivers(autobotsToBattle);
+				response.setSurvivors(autobotsToBattle);
 			}else {
 				log.info("No winner in the battle");
 				response.setWinningTeam(ITransformerService.WINNING_TEAM_NONE);
