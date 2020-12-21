@@ -1,7 +1,7 @@
 # AEQUILIBRIUM - TRANSFORMERS PROJECT
 
 
-1. HOW TO BUILD THE PROJECT
+## 1. HOW TO BUILD THE PROJECT
 
 This project was created using Maven.
 To build the project you can use the following maven command:
@@ -11,33 +11,38 @@ mvn package
 In case the build is successful, it will create a new artifact named Transformers-0.0.1-SNAPSHOT.jar in "target" directory.
 
 
-2. HOW TO RUN THE TESTS
+## 2. HOW TO RUN THE TESTS
 
 To run the tests, you can use the maven command:
 
 mvn test
 
 
-3. HOW TO RUN THE PROJECT
+## 3. HOW TO RUN THE PROJECT
 
 Once you built the project and created the JAR file with the name Transformers-0.0.1-SNAPSHOT.jar, you can run the project using the following command:
 
 java -jar Transformers-0.0.1-SNAPSHOT.jar
 
 
-4. API ENDPOINTS
+## 4. API ENDPOINTS
 
-4.1 List transformers
+### 4.1 List transformers
 
 This endpoint will retrieve all the Transformers stored in the database.
 
---Endpoint--
+#### Endpoint:
+
 /api/transformers/list
 
---Sample request--
+
+#### Sample request:
+
 (None)
 
---Sample response--
+
+#### Sample response:
+
 [
     {
         "idTransformer": 1,
@@ -67,14 +72,17 @@ This endpoint will retrieve all the Transformers stored in the database.
     }
 ]
 
-4.2 Create transformer
+### 4.2 Create transformer
 
 This endpoint will create a new transformer. If transformer Id is provided, it will validate that doesn't exist a transformer with the same ID. If transformer Id is not present, the program will assign one automatically.
 
---Endpoint--
+#### Endpoint:
+
 /api/transformers/create
 
---Sample request--
+
+#### Sample request:
+
 {
     "name": "Jazz",
     "type": "A",
@@ -88,7 +96,7 @@ This endpoint will create a new transformer. If transformer Id is provided, it w
     "skill": 4
 }
 
---Sample response--
+#### Sample response:
 {
   "body": {
     "idTransformer": 7,
@@ -109,14 +117,14 @@ This endpoint will create a new transformer. If transformer Id is provided, it w
 
 
 
-4.3 Update transformer
+### 4.3 Update transformer
 
 This endpoint will update an existing transformer. It will validate that the transformer Id provided in the parameters exists in the database.
 
---Endpoint--
+#### Endpoint:
 /api/transformers/update/{id}
 
---Sample request--
+#### Sample request:
 Path variable:
 id(integer)
 
@@ -136,7 +144,7 @@ Payload:
     "skill": 4
 }
 
---Sample response--
+#### Sample response:
 {
   "body": {
     "idTransformer": 7,
@@ -155,37 +163,37 @@ Payload:
 	  "statusCodeValue": 0
 	}
 
-4.4 Delete transformer
+### 4.4 Delete transformer
 
 This endpoint will delete an existing transformer. It will validate that the transformer Id provided in the parameters exists in the database.
 
---Endpoint--
+#### Endpoint:
 /api/transformers/delete/{id}
 
---Sample request--
+#### Sample request:
 Path variable:
 id(integer)
 
---Sample response--
+#### Sample response:
 {
   "body": {},
   "statusCode": "ACCEPTED",
   "statusCodeValue": 0
 }
 
-4.5 Battle
+### 4.5 Battle
 
 This endpoint will a receive a list of transformer IDs and will determine a winner, if any, based on the requirements provided.
 
---Endpoint--
+#### Endpoint:
 /api/transformers/battle
 
---Sample request--
+#### Sample request:
 [
   1,2,3
 ]
 
---Sample response--
+#### Sample response:
 {
   "body": {
     "numBattles": 1,
@@ -214,20 +222,20 @@ This endpoint will a receive a list of transformer IDs and will determine a winn
 
 **For more information, once project is started you can go to http://localhost:8080/swagger-ui/index.html
 
-ASSUMPTIONS AND NOTES
+## ASSUMPTIONS AND NOTES
 
--Rank sort order: Transformers from a team will be sorted in descending order depending on their rank. This decision was made because it was the way that the provided example would generate the expected result
+* Rank sort order: Transformers from a team will be sorted in descending order depending on their rank. This decision was made because it was the way that the provided example would generate the expected result
 
--Response battle: In the following cases, the program will return "None" as the winner of a battle and 0 survivors:
+* Response battle: In the following cases, the program will return "None" as the winner of a battle and 0 survivors:
 	-In case there is a tie in the number of battles won
 	-In case Optimus Prime and Predaking are part of a battle. Also, it will return 0 number of battles.
 	-In case that all transformer IDs provided are from the same team. It will return 0 number of battles.
 
--"Create transformer" endpoint: When creating a transformer, the program will validate that there is no other transformer with the same ID. If it does, the consumer will get a Bad Request response
+* "Create transformer" endpoint: When creating a transformer, the program will validate that there is no other transformer with the same ID. If it does, the consumer will get a Bad Request response
 
--"Update transformer" endpoint: When updating a transformer, the program will validate that a transformer with the given Id exists in the Database. If it doesn't, the consumer will get a Bad Request response
+* "Update transformer" endpoint: When updating a transformer, the program will validate that a transformer with the given Id exists in the Database. If it doesn't, the consumer will get a Bad Request response
 
--Database: This program uses an in-memory H2 database. To access it, go to http://localhost:8080/h2-console/ and access with 
+* Database: This program uses an in-memory H2 database. To access it, go to http://localhost:8080/h2-console/ and access with 
 URL:jdbc:h2:mem:transformers
 user:sa
 password:(empty)
