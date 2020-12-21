@@ -3,6 +3,8 @@ package com.aequilibrium.transformers.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +43,7 @@ public class TransformerController {
 	}
 	
 	@PostMapping(value = "/create")
-	public ResponseEntity createTransformer(@RequestBody TransformerDto transformer) {
+	public ResponseEntity createTransformer(@Valid @RequestBody TransformerDto transformer) {
 		log.info("Create transformer");
 		
 		Transformer transformerResponse = transformerService.createTransformer(modelMapper.map(transformer, Transformer.class));
@@ -56,7 +58,7 @@ public class TransformerController {
 	}
 	
 	@PutMapping(value = "/update/{id}")
-	public ResponseEntity updateTransformer(@PathVariable("id") Integer idTransformer, @RequestBody TransformerDto transformer) {
+	public ResponseEntity updateTransformer(@PathVariable("id") Integer idTransformer, @Valid @RequestBody TransformerDto transformer) {
 		log.info("Update transformer");
 	
 		if (idTransformer != null && idTransformer >= 0) {

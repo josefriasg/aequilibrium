@@ -76,6 +76,8 @@ This endpoint will retrieve all the Transformers stored in the database.
 
 This endpoint will create a new transformer. If transformer Id is provided, it will validate that doesn't exist a transformer with the same ID. If transformer Id is not present, the program will assign one automatically.
 
+The endpoint validates that the "type" is A or D (for Autobot or Decepticon), and that the strength, intelligence, speed, endurance, rank, courage, firepower and skill are between 1 and 10.
+
 #### Endpoint:
 
 /api/transformers/create
@@ -120,6 +122,8 @@ This endpoint will create a new transformer. If transformer Id is provided, it w
 ### 4.3 Update transformer
 
 This endpoint will update an existing transformer. It will validate that the transformer Id provided in the parameters exists in the database.
+
+The endpoint validates that the "type" is A or D (for Autobot or Decepticon), and that the strength, intelligence, speed, endurance, rank, courage, firepower and skill are between 1 and 10.
 
 #### Endpoint:
 /api/transformers/update/{id}
@@ -224,7 +228,9 @@ This endpoint will receive a list of transformer IDs and will determine a winner
 
 ## ASSUMPTIONS AND NOTES
 
-* Rank sort order: Transformers from a team will be sorted in descending order depending on their rank. This decision was made because it was the way that the provided example would generate the expected result
+* Transformer type: The only available options for transformer types are A and D, for Autobots and Decepticons respectively.
+
+* Rank sort order: Transformers from a team will be sorted in descending order depending on their rank. This decision was made because it was the way that the provided example would generate the expected result.
 
 * Response battle: In the following cases, the program will return "None" as the winner of a battle and 0 survivors:
 
@@ -234,17 +240,17 @@ This endpoint will receive a list of transformer IDs and will determine a winner
 	
 	-In case that all transformer IDs provided are from the same team. It will return 0 number of battles.
 
-* "Create transformer" endpoint: When creating a transformer, the program will validate that there is no other transformer with the same ID. If it does, the consumer will get a Bad Request response
+* "Create transformer" endpoint: When creating a transformer, the program will validate that there is no other transformer with the same ID. If it does, the consumer will get a Bad Request response.
 
-* "Update transformer" endpoint: When updating a transformer, the program will validate that a transformer with the given Id exists in the Database. If it doesn't, the consumer will get a Bad Request response
+* "Update transformer" endpoint: When updating a transformer, the program will validate that a transformer with the given Id exists in the Database. If it doesn't, the consumer will get a Bad Request response.
 
 * Database: This program uses an in-memory H2 database. To access it, go to http://localhost:8080/h2-console/ and access with:
 
--URL:jdbc:h2:mem:transformers
+	-URL:jdbc:h2:mem:transformers
 
--user:sa
+	-user:sa
 
--password:(empty)
+	-password:(empty)
 
 ## AUTHOR
 Jose Frías - joseduardofrias@gmail.com
