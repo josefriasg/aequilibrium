@@ -245,3 +245,6 @@ This endpoint will receive a list of transformer IDs and will determine a winner
 -user:sa
 
 -password:(empty)
+
+## AUTHOR
+Jose Frías - joseduardofrias@gmail.com
