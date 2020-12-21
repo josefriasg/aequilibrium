@@ -183,7 +183,7 @@ id(integer)
 
 ### 4.5 Battle
 
-This endpoint will a receive a list of transformer IDs and will determine a winner, if any, based on the requirements provided.
+This endpoint will receive a list of transformer IDs and will determine a winner, if any, based on the requirements provided.
 
 #### Endpoint:
 /api/transformers/battle
@@ -227,15 +227,21 @@ This endpoint will a receive a list of transformer IDs and will determine a winn
 * Rank sort order: Transformers from a team will be sorted in descending order depending on their rank. This decision was made because it was the way that the provided example would generate the expected result
 
 * Response battle: In the following cases, the program will return "None" as the winner of a battle and 0 survivors:
+
 	-In case there is a tie in the number of battles won
+	
 	-In case Optimus Prime and Predaking are part of a battle. Also, it will return 0 number of battles.
+	
 	-In case that all transformer IDs provided are from the same team. It will return 0 number of battles.
 
 * "Create transformer" endpoint: When creating a transformer, the program will validate that there is no other transformer with the same ID. If it does, the consumer will get a Bad Request response
 
 * "Update transformer" endpoint: When updating a transformer, the program will validate that a transformer with the given Id exists in the Database. If it doesn't, the consumer will get a Bad Request response
 
-* Database: This program uses an in-memory H2 database. To access it, go to http://localhost:8080/h2-console/ and access with 
-URL:jdbc:h2:mem:transformers
-user:sa
-password:(empty)
+* Database: This program uses an in-memory H2 database. To access it, go to http://localhost:8080/h2-console/ and access with:
+
+-URL:jdbc:h2:mem:transformers
+
+-user:sa
+
+-password:(empty)
