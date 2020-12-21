@@ -16,7 +16,7 @@ import lombok.Setter;
 
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Entity
-public class Transformer {
+public class Transformer implements Comparable<Transformer>{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -78,7 +78,35 @@ public class Transformer {
         		&& ((transformer.getSkill() == null && this.getSkill()==null) || (transformer.getSkill().equals(this.getStrength())))
         		);
 	}
+
+	@Override
+	public int compareTo(Transformer o) {
+		return this.getRank().intValue() == o.getRank().intValue()
+				? this.getIdTransformer().compareTo(o.getIdTransformer())
+						:this.getRank().compareTo(o.getRank());
+	}
 	
+	
+	
+	
+	public int getOverallRating() {
+		return this.getStrength()+this.getIntelligence()+this.getSpeed()+this.getEndurance()+this.getFirepower();
+	}
+
+	@Override
+	public String toString() {
+		return "ID:"+this.getIdTransformer()+
+				" - Name:"+this.getName()+
+				" - Type:"+this.getType()+
+				" - Strength:"+this.getStrength()+
+				" - Intelligence:"+this.getIntelligence()+
+				" - Speed:"+this.getSpeed()+
+				" - Endurance:"+this.getEndurance()+
+				" - Rank:"+this.getRank()+
+				" - Courage:"+this.getCourage()+
+				" - Firepower:"+this.getFirepower()+
+				" - Skill"+this.getSkill();
+	}
 	
 
 }
