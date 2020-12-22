@@ -244,6 +244,8 @@ This endpoint will receive a list of transformer IDs and will determine a winner
 
 * "Update transformer" endpoint: When updating a transformer, the program will validate that a transformer with the given Id exists in the Database. If it doesn't, the consumer will get a Bad Request response.
 
+* "Delete transformer" endpoint: When deleting a transformer, the program will validate that a transformer with the given Id exists in the Database. If it doesn't, the consumer will get a Bad Request response. If deletion succeeds, the consumer will receive an HTTP 200 message.
+
 * Database: This program uses an in-memory H2 database. To access it, go to http://localhost:8080/h2-console/ and access with:
 
 	-URL:jdbc:h2:mem:transformers
